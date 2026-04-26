@@ -1,0 +1,55 @@
+services:
+  db:
+    image: postgres:16
+    container_name: cobblemon-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cobblemon
+      POSTGRES_USER: cobblemon
+      POSTGRES_PASSWORD: cobblemon
+    ports:
+      - "5432:5432"
+    volumes:
+      - cobblemon_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U cobblemon -d cobblemon"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+    container_name: cobblemon-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/cobblemon
+      SPRING_DATASOURCE_USERNAME: cobblemon
+      SPRING_DATASOURCE_PASSWORD: cobblemon
+      APP_ASSETS_PATH: ./assets
+      APP_ASSETS_BASE_URL: http://localhost:8080
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
+        API_INTERNAL_URL: http://backend:8080
+    container_name: cobblemon-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_BASE_URL: http://localhost:8080
+      API_INTERNAL_URL: http://backend:8080
+    ports:
+      - "3000:3000"
+
+volumes:
+  cobblemon_db_data:
