@@ -51,5 +51,22 @@ services:
     ports:
       - "3000:3000"
 
+  importer:
+    profiles: ["import"]
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.importer
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      APP_DATASET_IMPORT_CODE: "${APP_DATASET_IMPORT_CODE:-cb161}"
+      APP_DATASET_IMPORT_LABEL: "${APP_DATASET_IMPORT_LABEL:-Cobblemon 1.6.1}"
+      APP_DATASET_IMPORT_INPUT_PATH: "${APP_DATASET_IMPORT_INPUT_PATH:-./import-data/cb161}"
+      APP_DATASET_IMPORT_CLEAN_BEFORE_IMPORT: "${APP_DATASET_IMPORT_CLEAN_BEFORE_IMPORT:-true}"
+      APP_ASSETS_PATH: ./assets
+      APP_ASSETS_BASE_URL: http://localhost:8080
+
 volumes:
   cobblemon_db_data:
