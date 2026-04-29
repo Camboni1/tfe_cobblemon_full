@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:absorb_bulb",
+  "displayName": "Absorb Bulb",
+  "path": "absorb_bulb",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

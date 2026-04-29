@@ -1,0 +1,10 @@
+{
+  "namespacedId": "cobblemon:medicinal_leek",
+  "displayName": "Medicinal Leek",
+  "seasoning": {
+    "colour": "green",
+    "foodHunger": 3,
+    "foodSaturation": 0.6,
+    "mobEffects": []
+  }
+}

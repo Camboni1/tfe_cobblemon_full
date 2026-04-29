@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:sunflower",
+  "displayName": "Sunflower",
+  "namespace": "minecraft",
+  "path": "sunflower",
+  "officialJsonExistsInCobblemonAssets": false
+}

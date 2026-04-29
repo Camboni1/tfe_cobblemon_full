@@ -1,0 +1,9 @@
+{
+  "kind": "wearable_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:black_glasses",
+  "displayName": "Black Glasses",
+  "path": "black_glasses",
+  "registryGroup": "wearables",
+  "officialJsonExistsInCobblemonAssets": false
+}

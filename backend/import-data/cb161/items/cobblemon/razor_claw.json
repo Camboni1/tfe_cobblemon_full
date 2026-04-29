@@ -1,0 +1,9 @@
+{
+  "kind": "evolution_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:razor_claw",
+  "displayName": "Razor Claw",
+  "path": "razor_claw",
+  "registryGroup": "evolution_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

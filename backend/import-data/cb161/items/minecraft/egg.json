@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:egg",
+  "displayName": "Egg",
+  "seasoning": {
+    "colour": "yellow",
+    "foodHunger": 3,
+    "foodSaturation": 0.9,
+    "mobEffects": []
+  }
+}

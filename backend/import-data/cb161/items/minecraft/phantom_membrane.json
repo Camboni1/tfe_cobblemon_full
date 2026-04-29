@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:phantom_membrane",
+  "displayName": "Phantom Membrane",
+  "namespace": "minecraft",
+  "path": "phantom_membrane",
+  "officialJsonExistsInCobblemonAssets": false
+}

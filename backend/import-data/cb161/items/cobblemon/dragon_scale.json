@@ -1,0 +1,9 @@
+{
+  "kind": "evolution_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:dragon_scale",
+  "displayName": "Dragon Scale",
+  "path": "dragon_scale",
+  "registryGroup": "evolution_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

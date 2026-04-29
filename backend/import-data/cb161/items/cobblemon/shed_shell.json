@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:shed_shell",
+  "displayName": "Shed Shell",
+  "path": "shed_shell",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

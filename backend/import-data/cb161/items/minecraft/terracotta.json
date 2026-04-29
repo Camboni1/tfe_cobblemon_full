@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:terracotta",
+  "displayName": "Terracotta",
+  "namespace": "minecraft",
+  "path": "terracotta",
+  "officialJsonExistsInCobblemonAssets": false
+}

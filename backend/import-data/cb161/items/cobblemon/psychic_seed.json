@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:psychic_seed",
+  "displayName": "Psychic Seed",
+  "path": "psychic_seed",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

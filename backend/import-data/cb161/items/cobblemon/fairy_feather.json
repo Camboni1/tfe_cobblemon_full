@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:fairy_feather",
+  "displayName": "Fairy Feather",
+  "path": "fairy_feather",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

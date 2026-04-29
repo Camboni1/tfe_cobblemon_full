@@ -1,0 +1,9 @@
+{
+  "kind": "evolution_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:deep_sea_scale",
+  "displayName": "Deep Sea Scale",
+  "path": "deep_sea_scale",
+  "registryGroup": "evolution_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

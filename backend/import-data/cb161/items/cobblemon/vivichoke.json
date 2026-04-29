@@ -1,0 +1,10 @@
+{
+  "namespacedId": "cobblemon:vivichoke",
+  "displayName": "Vivichoke",
+  "seasoning": {
+    "colour": "purple",
+    "foodHunger": 6,
+    "foodSaturation": 2.0,
+    "mobEffects": []
+  }
+}

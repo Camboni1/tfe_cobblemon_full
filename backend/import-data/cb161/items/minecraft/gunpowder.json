@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:gunpowder",
+  "displayName": "Gunpowder",
+  "namespace": "minecraft",
+  "path": "gunpowder",
+  "officialJsonExistsInCobblemonAssets": false
+}

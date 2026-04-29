@@ -1,0 +1,9 @@
+{
+  "kind": "evolution_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:black_augurite",
+  "displayName": "Black Augurite",
+  "path": "black_augurite",
+  "registryGroup": "evolution_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

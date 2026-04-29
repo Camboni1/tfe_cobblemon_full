@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:wither_rose",
+  "displayName": "Wither Rose",
+  "namespace": "minecraft",
+  "path": "wither_rose",
+  "officialJsonExistsInCobblemonAssets": false
+}

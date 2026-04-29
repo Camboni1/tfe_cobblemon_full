@@ -1,0 +1,9 @@
+{
+  "kind": "wearable_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:rocky_helmet",
+  "displayName": "Rocky Helmet",
+  "path": "rocky_helmet",
+  "registryGroup": "wearables",
+  "officialJsonExistsInCobblemonAssets": false
+}

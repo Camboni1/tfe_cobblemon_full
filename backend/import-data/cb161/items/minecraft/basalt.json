@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:basalt",
+  "displayName": "Basalt",
+  "namespace": "minecraft",
+  "path": "basalt",
+  "officialJsonExistsInCobblemonAssets": false
+}

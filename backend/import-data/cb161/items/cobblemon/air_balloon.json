@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:air_balloon",
+  "displayName": "Air Balloon",
+  "path": "air_balloon",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

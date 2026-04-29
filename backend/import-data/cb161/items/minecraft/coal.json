@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:coal",
+  "displayName": "Coal",
+  "namespace": "minecraft",
+  "path": "coal",
+  "officialJsonExistsInCobblemonAssets": false
+}

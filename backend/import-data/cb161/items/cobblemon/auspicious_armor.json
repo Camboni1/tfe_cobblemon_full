@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:auspicious_armor",
+  "displayName": "Auspicious Armor",
+  "path": "auspicious_armor",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

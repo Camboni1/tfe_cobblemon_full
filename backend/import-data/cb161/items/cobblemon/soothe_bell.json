@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:soothe_bell",
+  "displayName": "Soothe Bell",
+  "path": "soothe_bell",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:glow_ink_sac",
+  "displayName": "Glow Ink Sac",
+  "namespace": "minecraft",
+  "path": "glow_ink_sac",
+  "officialJsonExistsInCobblemonAssets": false
+}

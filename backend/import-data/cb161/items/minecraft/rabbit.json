@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:rabbit",
+  "displayName": "Raw Rabbit",
+  "seasoning": {
+    "colour": "pink",
+    "foodHunger": 5,
+    "foodSaturation": 3.0,
+    "mobEffects": []
+  }
+}

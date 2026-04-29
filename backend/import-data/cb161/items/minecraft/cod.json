@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:cod",
+  "displayName": "Raw Cod",
+  "seasoning": {
+    "colour": "white",
+    "foodHunger": 5,
+    "foodSaturation": 3.0,
+    "mobEffects": []
+  }
+}

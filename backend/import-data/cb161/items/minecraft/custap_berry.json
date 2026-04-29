@@ -1,0 +1,11 @@
+{
+  "namespacedId": "minecraft:custap_berry",
+  "displayName": "Custap Berry",
+  "baitEffects": [
+    {
+      "effectType": "reduce_bite_time",
+      "chance": 1.0,
+      "value": 0.25
+    }
+  ]
+}

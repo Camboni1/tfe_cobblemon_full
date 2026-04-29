@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:rabbit_foot",
+  "displayName": "Rabbit Foot",
+  "namespace": "minecraft",
+  "path": "rabbit_foot",
+  "officialJsonExistsInCobblemonAssets": false
+}

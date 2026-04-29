@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:brown_wool",
+  "displayName": "Brown Wool",
+  "namespace": "minecraft",
+  "path": "brown_wool",
+  "officialJsonExistsInCobblemonAssets": false
+}

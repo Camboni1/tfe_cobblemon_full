@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:stone",
+  "displayName": "Stone",
+  "namespace": "minecraft",
+  "path": "stone",
+  "officialJsonExistsInCobblemonAssets": false
+}

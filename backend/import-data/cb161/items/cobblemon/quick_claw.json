@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:quick_claw",
+  "displayName": "Quick Claw",
+  "path": "quick_claw",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

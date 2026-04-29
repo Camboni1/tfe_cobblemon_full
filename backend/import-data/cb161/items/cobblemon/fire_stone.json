@@ -1,0 +1,9 @@
+{
+  "kind": "evolution_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:fire_stone",
+  "displayName": "Fire Stone",
+  "path": "fire_stone",
+  "registryGroup": "evolution_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

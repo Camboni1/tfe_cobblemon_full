@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:float_stone",
+  "displayName": "Float Stone",
+  "path": "float_stone",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

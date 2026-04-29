@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:shell_bell",
+  "displayName": "Shell Bell",
+  "path": "shell_bell",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

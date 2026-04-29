@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:ink_sac",
+  "displayName": "Ink Sac",
+  "namespace": "minecraft",
+  "path": "ink_sac",
+  "officialJsonExistsInCobblemonAssets": false
+}

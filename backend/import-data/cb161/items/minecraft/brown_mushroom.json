@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:brown_mushroom",
+  "displayName": "Brown Mushroom",
+  "seasoning": {
+    "colour": "brown",
+    "foodHunger": 3,
+    "foodSaturation": 1.8,
+    "mobEffects": []
+  }
+}

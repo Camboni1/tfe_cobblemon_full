@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:honeycomb",
+  "displayName": "Honeycomb",
+  "namespace": "minecraft",
+  "path": "honeycomb",
+  "officialJsonExistsInCobblemonAssets": false
+}

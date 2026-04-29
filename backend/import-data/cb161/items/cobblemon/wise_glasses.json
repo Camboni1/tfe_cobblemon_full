@@ -1,0 +1,9 @@
+{
+  "kind": "wearable_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:wise_glasses",
+  "displayName": "Wise Glasses",
+  "path": "wise_glasses",
+  "registryGroup": "wearables",
+  "officialJsonExistsInCobblemonAssets": false
+}

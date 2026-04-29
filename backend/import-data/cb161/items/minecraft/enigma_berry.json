@@ -1,0 +1,11 @@
+{
+  "namespacedId": "minecraft:enigma_berry",
+  "displayName": "Enigma Berry",
+  "baitEffects": [
+    {
+      "effectType": "hidden_ability_attraction",
+      "chance": 0.05,
+      "value": 1
+    }
+  ]
+}

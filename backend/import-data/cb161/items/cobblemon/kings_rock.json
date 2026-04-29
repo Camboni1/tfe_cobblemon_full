@@ -1,0 +1,9 @@
+{
+  "kind": "wearable_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:kings_rock",
+  "displayName": "Kings Rock",
+  "path": "kings_rock",
+  "registryGroup": "wearables",
+  "officialJsonExistsInCobblemonAssets": false
+}

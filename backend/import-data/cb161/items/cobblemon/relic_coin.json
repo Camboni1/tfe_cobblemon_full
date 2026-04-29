@@ -1,0 +1,9 @@
+{
+  "kind": "misc_cobblemon_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:relic_coin",
+  "displayName": "Relic Coin",
+  "path": "relic_coin",
+  "registryGroup": "misc",
+  "officialJsonExistsInCobblemonAssets": false
+}

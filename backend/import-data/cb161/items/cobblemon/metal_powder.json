@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:metal_powder",
+  "displayName": "Metal Powder",
+  "path": "metal_powder",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

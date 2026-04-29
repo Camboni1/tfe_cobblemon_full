@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:amethyst_shard",
+  "displayName": "Amethyst Shard",
+  "namespace": "minecraft",
+  "path": "amethyst_shard",
+  "officialJsonExistsInCobblemonAssets": false
+}

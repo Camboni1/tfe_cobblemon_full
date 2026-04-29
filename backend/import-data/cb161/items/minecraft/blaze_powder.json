@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:blaze_powder",
+  "displayName": "Blaze Powder",
+  "namespace": "minecraft",
+  "path": "blaze_powder",
+  "officialJsonExistsInCobblemonAssets": false
+}

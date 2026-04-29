@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:nether_star",
+  "displayName": "Nether Star",
+  "namespace": "minecraft",
+  "path": "nether_star",
+  "officialJsonExistsInCobblemonAssets": false
+}

@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:dried_kelp",
+  "displayName": "Dried Kelp",
+  "seasoning": {
+    "colour": "green",
+    "foodHunger": 2,
+    "foodSaturation": 0.3,
+    "mobEffects": []
+  }
+}

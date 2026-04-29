@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:life_orb",
+  "displayName": "Life Orb",
+  "path": "life_orb",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

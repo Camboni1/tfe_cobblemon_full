@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:iron_ingot",
+  "displayName": "Iron Ingot",
+  "namespace": "minecraft",
+  "path": "iron_ingot",
+  "officialJsonExistsInCobblemonAssets": false
+}

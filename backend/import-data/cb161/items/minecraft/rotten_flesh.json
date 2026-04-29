@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:rotten_flesh",
+  "displayName": "Rotten Flesh",
+  "seasoning": {
+    "colour": "brown",
+    "foodHunger": 4,
+    "foodSaturation": 0.4,
+    "mobEffects": []
+  }
+}

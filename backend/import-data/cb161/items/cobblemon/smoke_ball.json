@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:smoke_ball",
+  "displayName": "Smoke Ball",
+  "path": "smoke_ball",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:flint",
+  "displayName": "Flint",
+  "namespace": "minecraft",
+  "path": "flint",
+  "officialJsonExistsInCobblemonAssets": false
+}

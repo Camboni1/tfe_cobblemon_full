@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:nautilus_shell",
+  "displayName": "Nautilus Shell",
+  "namespace": "minecraft",
+  "path": "nautilus_shell",
+  "officialJsonExistsInCobblemonAssets": false
+}

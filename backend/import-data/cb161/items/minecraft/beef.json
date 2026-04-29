@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:beef",
+  "displayName": "Raw Beef",
+  "seasoning": {
+    "colour": "red",
+    "foodHunger": 8,
+    "foodSaturation": 6.4,
+    "mobEffects": []
+  }
+}

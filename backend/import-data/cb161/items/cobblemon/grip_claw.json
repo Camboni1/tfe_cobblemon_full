@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:grip_claw",
+  "displayName": "Grip Claw",
+  "path": "grip_claw",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

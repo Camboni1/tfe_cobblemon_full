@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:everstone",
+  "displayName": "Everstone",
+  "path": "everstone",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

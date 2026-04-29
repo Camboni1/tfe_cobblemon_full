@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:sticky_barb",
+  "displayName": "Sticky Barb",
+  "path": "sticky_barb",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

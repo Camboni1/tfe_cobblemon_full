@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:carrot",
+  "displayName": "Carrot",
+  "seasoning": {
+    "colour": "orange",
+    "foodHunger": 3,
+    "foodSaturation": 1.8,
+    "mobEffects": []
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "namespacedId": "minecraft:sweet_berries",
+  "displayName": "Sweet Berries",
+  "seasoning": {
+    "colour": "red",
+    "foodHunger": 2,
+    "foodSaturation": 0.4,
+    "mobEffects": []
+  },
+  "baitEffects": [
+    {
+      "effectType": "reduce_bite_time",
+      "chance": 1.0,
+      "value": 0.125
+    }
+  ]
+}

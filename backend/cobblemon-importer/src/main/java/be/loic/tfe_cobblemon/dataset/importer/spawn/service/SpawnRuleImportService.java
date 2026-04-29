@@ -1,0 +1,10 @@
+package be.loic.tfe_cobblemon.dataset.importer.spawn.service;
+
+import be.loic.tfe_cobblemon.dataset.entity.DatasetVersion;
+
+import java.nio.file.Path;
+
+public interface SpawnRuleImportService {
+
+    void importSpawnRules(DatasetVersion datasetVersion, Path datasetRoot);
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:honey_bottle",
+  "displayName": "Honey Bottle",
+  "namespace": "minecraft",
+  "path": "honey_bottle",
+  "officialJsonExistsInCobblemonAssets": false
+}

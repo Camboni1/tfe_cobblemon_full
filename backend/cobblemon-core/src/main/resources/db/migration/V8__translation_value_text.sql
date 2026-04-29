@@ -1,0 +1,2 @@
+ALTER TABLE translation
+ALTER COLUMN value TYPE TEXT;

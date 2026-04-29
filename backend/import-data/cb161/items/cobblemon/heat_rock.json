@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:heat_rock",
+  "displayName": "Heat Rock",
+  "path": "heat_rock",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

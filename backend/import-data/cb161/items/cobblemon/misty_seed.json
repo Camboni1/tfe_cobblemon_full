@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:misty_seed",
+  "displayName": "Misty Seed",
+  "path": "misty_seed",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

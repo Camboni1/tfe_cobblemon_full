@@ -1,0 +1,8 @@
+node_modules
+.next
+.idea
+*.iml
+.git
+.gitignore
+README.md
+.env.local

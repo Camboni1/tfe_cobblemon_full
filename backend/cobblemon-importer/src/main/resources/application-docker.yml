@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://db:5432/cobblemon
+    username: cobblemon
+    password: cobblemon
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    enabled: true

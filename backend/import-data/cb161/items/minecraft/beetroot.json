@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:beetroot",
+  "displayName": "Beetroot",
+  "seasoning": {
+    "colour": "red",
+    "foodHunger": 1,
+    "foodSaturation": 0.6,
+    "mobEffects": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:silver_powder",
+  "displayName": "Silver Powder",
+  "path": "silver_powder",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

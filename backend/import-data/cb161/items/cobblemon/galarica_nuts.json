@@ -1,0 +1,9 @@
+{
+  "kind": "blockbacked_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:galarica_nuts",
+  "displayName": "Galarica Nuts",
+  "path": "galarica_nuts",
+  "registryGroup": "blockbacked_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

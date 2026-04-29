@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:chicken",
+  "displayName": "Raw Chicken",
+  "seasoning": {
+    "colour": "white",
+    "foodHunger": 6,
+    "foodSaturation": 3.6,
+    "mobEffects": []
+  }
+}

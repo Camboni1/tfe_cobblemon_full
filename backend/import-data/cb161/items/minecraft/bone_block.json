@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:bone_block",
+  "displayName": "Bone Block",
+  "namespace": "minecraft",
+  "path": "bone_block",
+  "officialJsonExistsInCobblemonAssets": false
+}

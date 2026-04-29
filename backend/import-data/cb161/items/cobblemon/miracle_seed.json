@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:miracle_seed",
+  "displayName": "Miracle Seed",
+  "path": "miracle_seed",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "wearable_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:muscle_band",
+  "displayName": "Muscle Band",
+  "path": "muscle_band",
+  "registryGroup": "wearables",
+  "officialJsonExistsInCobblemonAssets": false
+}

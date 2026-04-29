@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:poisonous_potato",
+  "displayName": "Poisonous Potato",
+  "seasoning": {
+    "colour": "green",
+    "foodHunger": 2,
+    "foodSaturation": 0.6,
+    "mobEffects": []
+  }
+}

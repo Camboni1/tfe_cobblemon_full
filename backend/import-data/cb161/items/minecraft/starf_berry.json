@@ -1,0 +1,11 @@
+{
+  "namespacedId": "minecraft:starf_berry",
+  "displayName": "Starf Berry",
+  "baitEffects": [
+    {
+      "effectType": "shiny_multiplier",
+      "chance": 1.0,
+      "value": 5
+    }
+  ]
+}

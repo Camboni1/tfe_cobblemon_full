@@ -1,0 +1,11 @@
+{
+  "namespacedId": "minecraft:glow_berries",
+  "displayName": "Glow Berries",
+  "baitEffects": [
+    {
+      "effectType": "reduce_bite_time",
+      "chance": 1.0,
+      "value": 0.25
+    }
+  ]
+}

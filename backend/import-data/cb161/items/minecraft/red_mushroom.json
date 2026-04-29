@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:red_mushroom",
+  "displayName": "Red Mushroom",
+  "seasoning": {
+    "colour": "red",
+    "foodHunger": 3,
+    "foodSaturation": 1.8,
+    "mobEffects": []
+  }
+}

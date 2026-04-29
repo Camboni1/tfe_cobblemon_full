@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:never_melt_ice",
+  "displayName": "Never Melt Ice",
+  "path": "never_melt_ice",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:verdant_froglight",
+  "displayName": "Verdant Froglight",
+  "namespace": "minecraft",
+  "path": "verdant_froglight",
+  "officialJsonExistsInCobblemonAssets": false
+}

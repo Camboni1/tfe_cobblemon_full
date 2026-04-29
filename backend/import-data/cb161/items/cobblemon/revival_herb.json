@@ -1,0 +1,9 @@
+{
+  "kind": "consumable_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:revival_herb",
+  "displayName": "Revival Herb",
+  "path": "revival_herb",
+  "registryGroup": "consumable_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

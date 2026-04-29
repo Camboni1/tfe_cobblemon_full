@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:potato",
+  "displayName": "Potato",
+  "seasoning": {
+    "colour": "brown",
+    "foodHunger": 5,
+    "foodSaturation": 3.0,
+    "mobEffects": []
+  }
+}

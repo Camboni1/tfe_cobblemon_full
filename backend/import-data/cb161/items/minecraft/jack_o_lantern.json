@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:jack_o_lantern",
+  "displayName": "Jack O Lantern",
+  "namespace": "minecraft",
+  "path": "jack_o_lantern",
+  "officialJsonExistsInCobblemonAssets": false
+}

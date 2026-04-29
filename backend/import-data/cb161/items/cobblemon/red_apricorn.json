@@ -1,0 +1,9 @@
+{
+  "kind": "apricorn_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:red_apricorn",
+  "displayName": "Red Apricorn",
+  "path": "red_apricorn",
+  "registryGroup": "apricorns",
+  "officialJsonExistsInCobblemonAssets": false
+}

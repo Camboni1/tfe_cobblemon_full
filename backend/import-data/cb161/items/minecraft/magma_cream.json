@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:magma_cream",
+  "displayName": "Magma Cream",
+  "namespace": "minecraft",
+  "path": "magma_cream",
+  "officialJsonExistsInCobblemonAssets": false
+}

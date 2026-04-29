@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:pumpkin",
+  "displayName": "Pumpkin",
+  "seasoning": {
+    "colour": "orange",
+    "foodHunger": 6,
+    "foodSaturation": 1.8,
+    "mobEffects": []
+  }
+}

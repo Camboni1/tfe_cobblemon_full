@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:soft_sand",
+  "displayName": "Soft Sand",
+  "path": "soft_sand",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

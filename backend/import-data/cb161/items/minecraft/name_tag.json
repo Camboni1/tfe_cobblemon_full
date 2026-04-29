@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:name_tag",
+  "displayName": "Name Tag",
+  "namespace": "minecraft",
+  "path": "name_tag",
+  "officialJsonExistsInCobblemonAssets": false
+}

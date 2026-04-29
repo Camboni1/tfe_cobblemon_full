@@ -1,0 +1,31 @@
+{
+  "species": "cobblemon:glimmora",
+  "order": 0,
+  "variations": [
+    {
+      "aspects": [],
+      "poser": "cobblemon:glimmora",
+      "model": "cobblemon:glimmora.geo",
+      "texture": "cobblemon:textures/pokemon/0970_glimmora/glimmora.png",
+      "layers": []
+    },
+    {
+      "aspects": [
+        "shiny"
+      ],
+      "texture": "cobblemon:textures/pokemon/0970_glimmora/glimmora_shiny.png"
+    },
+    {
+      "aspects": [
+        "alpha_eyes"
+      ],
+      "layers": [
+        {
+          "name": "alpha_eyes",
+          "texture": "cobblemon:textures/pokemon/0970_glimmora/glimmora_alpha.png",
+          "emissive": true
+        }
+      ]
+    }
+  ]
+}

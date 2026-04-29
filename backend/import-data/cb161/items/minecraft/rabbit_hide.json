@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:rabbit_hide",
+  "displayName": "Rabbit Hide",
+  "namespace": "minecraft",
+  "path": "rabbit_hide",
+  "officialJsonExistsInCobblemonAssets": false
+}

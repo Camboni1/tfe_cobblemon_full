@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:pumpkin_seeds",
+  "displayName": "Pumpkin Seeds",
+  "namespace": "minecraft",
+  "path": "pumpkin_seeds",
+  "officialJsonExistsInCobblemonAssets": false
+}

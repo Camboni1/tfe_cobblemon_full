@@ -1,0 +1,10 @@
+{
+  "namespacedId": "cobblemon:tasty_tail",
+  "displayName": "Tasty Tail",
+  "seasoning": {
+    "colour": "pink",
+    "foodHunger": 8,
+    "foodSaturation": 6.4,
+    "mobEffects": []
+  }
+}

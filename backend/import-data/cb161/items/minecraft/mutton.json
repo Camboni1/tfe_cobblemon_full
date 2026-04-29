@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:mutton",
+  "displayName": "Raw Mutton",
+  "seasoning": {
+    "colour": "red",
+    "foodHunger": 6,
+    "foodSaturation": 0.6,
+    "mobEffects": []
+  }
+}

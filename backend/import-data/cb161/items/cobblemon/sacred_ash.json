@@ -1,0 +1,9 @@
+{
+  "kind": "misc_cobblemon_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:sacred_ash",
+  "displayName": "Sacred Ash",
+  "path": "sacred_ash",
+  "registryGroup": "misc",
+  "officialJsonExistsInCobblemonAssets": false
+}

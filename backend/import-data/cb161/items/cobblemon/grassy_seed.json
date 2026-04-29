@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:grassy_seed",
+  "displayName": "Grassy Seed",
+  "path": "grassy_seed",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

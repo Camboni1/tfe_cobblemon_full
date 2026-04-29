@@ -1,0 +1,889 @@
+/* ============================================================
+   IMPORTS TAILWIND
+   ============================================================ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   VARIABLES GLOBALES — STYLE POKEMON HOME (GuideBook)
+   ============================================================ */
+
+:root {
+  /* Fond vert menthe + trame */
+  --color-bg-base: #c9e6d4;
+  --color-bg-grid: rgba(255, 255, 255, 0.40);
+  --color-bg-grid-strong: rgba(255, 255, 255, 0.55);
+
+  /* Surfaces blanches */
+  --color-bg-surface: #ffffff;
+  --color-bg-surface-soft: #f4fbf6;
+  --color-bg-elevated: #ffffff;
+
+  /* Accent turquoise HOME */
+  --color-primary: #3ebaa0;
+  --color-primary-strong: #2d9a84;
+  --color-primary-soft: #d4f0e5;
+  --color-primary-softer: #eaf7f1;
+
+  /* Accent secondaire (rouge doux pour alerts) */
+  --color-danger: #e06b6b;
+  --color-warning: #e6a94a;
+
+  /* Texte */
+  --color-text-primary: #3e5050;
+  --color-text-secondary: #6a7b7b;
+  --color-text-muted: #98a8a8;
+
+  /* Bordures */
+  --color-border: rgba(62, 186, 160, 0.16);
+  --color-border-strong: rgba(62, 186, 160, 0.32);
+  --color-divider: #e5efe8;
+
+  /* Ombres HOME (très douces, verdâtres) */
+  --shadow-card: 0 1px 2px rgba(60, 100, 80, 0.04),
+  0 4px 12px rgba(60, 100, 80, 0.06);
+  --shadow-card-hover: 0 2px 4px rgba(60, 100, 80, 0.06),
+  0 8px 24px rgba(60, 100, 80, 0.12);
+  --shadow-fab: 0 4px 12px rgba(62, 186, 160, 0.35);
+
+  /* Rayons */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 22px;
+
+  /* Rétro-compat avec l'ancien thème */
+  --color-bg-card: var(--color-bg-surface);
+  --color-bg-card-strong: var(--color-bg-surface);
+  --color-bg-nav: var(--color-bg-surface);
+  --color-accent: var(--color-primary);
+  --color-accent-strong: var(--color-primary-strong);
+  --color-accent-soft: var(--color-primary-soft);
+}
+
+/* ============================================================
+   RESET ET BASE
+   ============================================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text-primary);
+  font-family: 'Nunito', 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--color-bg-base);
+  background-image:
+          linear-gradient(var(--color-bg-grid) 1px, transparent 1px),
+          linear-gradient(90deg, var(--color-bg-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+  background-attachment: fixed;
+}
+
+/* Neutralisation de l'ancien fond sombre */
+body::before,
+body::after {
+  display: none !important;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-text-primary);
+}
+
+/* ============================================================
+   SCROLLBAR PERSONNALISÉE
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(62, 186, 160, 0.28);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(62, 186, 160, 0.5);
+}
+
+/* ============================================================
+   HOME — PANELS (cards blanches)
+   ============================================================ */
+
+.home-panel {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 1.25rem;
+}
+
+.home-panel-flat {
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+}
+
+.home-panel-soft {
+  background: var(--color-bg-surface-soft);
+  border-radius: var(--radius-lg);
+  padding: 1rem;
+}
+
+/* ============================================================
+   HOME — TITRES
+   ============================================================ */
+
+.home-page-title {
+  font-family: 'Nunito', 'Inter', sans-serif;
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-primary-strong);
+  text-align: center;
+  letter-spacing: 0;
+  margin: 0;
+}
+
+.home-section-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+/* ============================================================
+   HOME — BARRE DE RECHERCHE TURQUOISE (style bandeau HOME)
+   ============================================================ */
+
+.home-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  height: 52px;
+  padding: 0 1.25rem;
+  background: var(--color-primary);
+  color: white;
+  border-radius: 14px;
+  border: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: text;
+  transition: background-color 150ms ease;
+  box-shadow: 0 2px 6px rgba(62, 186, 160, 0.22);
+}
+
+.home-search-bar:focus-within,
+.home-search-bar:hover {
+  background: var(--color-primary-strong);
+}
+
+.home-search-bar input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  outline: none;
+  padding: 0;
+}
+
+.home-search-bar input::placeholder {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.home-search-bar svg {
+  flex-shrink: 0;
+  opacity: 0.92;
+}
+
+/* Variant : champ clair (fond blanc, bordure turquoise) */
+.home-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.home-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+.home-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+/* ============================================================
+   HOME — GRILLE POKEMON (densité auto via auto-fill)
+   ============================================================
+   Utilise CSS Grid pur (pas Tailwind) pour une densité fluide
+   qui s'adapte automatiquement à la largeur du conteneur.
+   ============================================================ */
+
+.home-pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
+}
+
+@media (min-width: 640px) {
+  .home-pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 8px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .home-pokemon-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+}
+
+/* ============================================================
+   HOME — POKEMON CARD (tuile de la grille)
+   ============================================================ */
+
+.home-pokemon-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: var(--color-bg-surface);
+  border-radius: 14px;
+  padding: 0.45rem 0.3rem 0.6rem;
+  box-shadow: var(--shadow-card);
+  transition:
+          transform 220ms cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  overflow: hidden;
+  text-align: center;
+  isolation: isolate;
+}
+
+/* Dégradé de fond très subtil (diagonale blanche → vert menthe discret) */
+.home-pokemon-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+          158deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(234, 247, 241, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Halo turquoise qui s'allume derrière l'image au hover */
+.home-pokemon-card::after {
+  content: '';
+  position: absolute;
+  top: 42%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.78);
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: radial-gradient(
+          circle,
+          var(--color-primary-soft) 0%,
+          rgba(212, 240, 229, 0.55) 42%,
+          transparent 72%
+  );
+  opacity: 0;
+  transition:
+          opacity 280ms cubic-bezier(0.4, 0, 0.2, 1),
+          transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.home-pokemon-card:hover,
+.home-pokemon-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  outline: none;
+}
+
+.home-pokemon-card:hover::after,
+.home-pokemon-card:focus-visible::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.home-pokemon-card-image {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.15rem;
+}
+
+.home-pokemon-card-image img {
+  max-width: 94%;
+  max-height: 94%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 3px 6px rgba(60, 100, 80, 0.18));
+  transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.home-pokemon-card:hover .home-pokemon-card-image img,
+.home-pokemon-card:focus-visible .home-pokemon-card-image img {
+  transform: scale(1.09) translateY(-2px);
+}
+
+.home-pokemon-card-dex {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-top: 0.1rem;
+  margin-bottom: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.home-pokemon-card-name {
+  position: relative;
+  z-index: 1;
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1.15;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 0.2rem;
+  transition: color 180ms ease;
+}
+
+.home-pokemon-card:hover .home-pokemon-card-name,
+.home-pokemon-card:focus-visible .home-pokemon-card-name {
+  color: var(--color-primary-strong);
+}
+
+/* Sur grands écrans, on agrandit légèrement la typo pour la lisibilité */
+@media (min-width: 1280px) {
+  .home-pokemon-card-name { font-size: 0.84rem; }
+  .home-pokemon-card-dex  { font-size: 0.64rem; }
+}
+
+.home-pokemon-card-empty {
+  opacity: 0.55;
+}
+
+.home-pokemon-card-empty::after {
+  display: none;
+}
+
+.home-pokemon-card-placeholder {
+  width: 60%;
+  height: 60%;
+  border-radius: 999px;
+  background: var(--color-bg-surface-soft);
+  border: 2px dashed var(--color-border-strong);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* ============================================================
+   HOME — BOUTONS FLOTTANTS (FAB turquoise rond)
+   ============================================================ */
+
+.home-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  box-shadow: var(--shadow-fab);
+  transition: background-color 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  cursor: pointer;
+}
+
+.home-fab:hover {
+  background: var(--color-primary-strong);
+  box-shadow: 0 6px 16px rgba(62, 186, 160, 0.45);
+}
+
+.home-fab:active {
+  transform: translateY(1px);
+}
+
+.home-fab:disabled {
+  background: var(--color-text-muted);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.home-fab-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 2px solid var(--color-primary);
+  background: var(--color-bg-surface);
+  color: var(--color-primary);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+
+.home-fab-outline:hover {
+  background: var(--color-primary-soft);
+}
+
+/* Bouton rectangulaire plein */
+.home-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.home-btn:hover {
+  background: var(--color-primary-strong);
+}
+
+.home-btn:disabled {
+  background: var(--color-text-muted);
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.home-btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  border: 1px solid var(--color-border-strong);
+  cursor: pointer;
+  transition: border-color 150ms ease, color 150ms ease, background-color 150ms ease;
+}
+
+.home-btn-ghost:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary-strong);
+  background: var(--color-primary-softer);
+}
+
+/* ============================================================
+   HOME — CHIPS / TOGGLES / SELECT
+   ============================================================ */
+
+.home-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--color-bg-surface-soft);
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+}
+
+.home-chip-primary {
+  background: var(--color-primary-soft);
+  color: var(--color-primary-strong);
+  border-color: var(--color-border-strong);
+}
+
+.home-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.home-toggle:hover {
+  border-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.home-toggle-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+.home-toggle-active:hover {
+  color: white;
+  background: var(--color-primary-strong);
+}
+
+.home-select {
+  width: 100%;
+  height: 44px;
+  padding: 0 2.5rem 0 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%233ebaa0' d='M6 8L0 2l1.5-1.5L6 5l4.5-4.5L12 2z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.home-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+/* ============================================================
+   HOME — BADGES DE TYPE POKEMON (couleurs officielles)
+   ============================================================ */
+
+.home-type-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 0.02em;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  min-width: 70px;
+}
+
+.home-type-normal   { background: #9fa4af; }
+.home-type-fire     { background: #f08030; }
+.home-type-water    { background: #6890f0; }
+.home-type-grass    { background: #78c850; }
+.home-type-electric { background: #f8d030; color: #4a3000; }
+.home-type-ice      { background: #98d8d8; color: #1a4a4a; }
+.home-type-fighting { background: #c03028; }
+.home-type-poison   { background: #a040a0; }
+.home-type-ground   { background: #e0c068; color: #4a3000; }
+.home-type-flying   { background: #a890f0; }
+.home-type-psychic  { background: #f85888; }
+.home-type-bug      { background: #a8b820; }
+.home-type-rock     { background: #b8a038; }
+.home-type-ghost    { background: #705898; }
+.home-type-dragon   { background: #7038f8; }
+.home-type-dark     { background: #705848; }
+.home-type-steel    { background: #b8b8d0; color: #2a2a3a; }
+.home-type-fairy    { background: #ee99ac; }
+
+/* ============================================================
+   HOME — ÉTATS (loading, empty)
+   ============================================================ */
+
+.home-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 1rem;
+  text-align: center;
+  color: var(--color-text-secondary);
+  gap: 0.5rem;
+}
+
+.home-empty-title {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.home-empty-desc {
+  font-size: 0.88rem;
+  color: var(--color-text-secondary);
+}
+
+/* ============================================================
+   HOME — ANIMATIONS
+   ============================================================ */
+
+@keyframes home-fade-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.home-fade-in {
+  animation: home-fade-in 260ms ease-out both;
+}
+
+@keyframes home-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.home-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--color-primary-soft);
+  border-top-color: var(--color-primary);
+  border-radius: 999px;
+  animation: home-spin 900ms linear infinite;
+}
+
+/* ============================================================
+   RÉTRO-COMPAT — Anciennes classes `pokedex-*` restylées HOME
+   ============================================================
+   Garde le rendu cohérent pendant la migration. À supprimer
+   progressivement une fois tous les composants migrés en `home-*`.
+   ============================================================ */
+
+.pokedex-panel {
+  position: relative;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  border: none;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+}
+
+.pokedex-panel::before,
+.pokedex-panel::after {
+  display: none !important;
+}
+
+.pokedex-tab {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: var(--color-bg-surface-soft);
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pokedex-tab-active {
+  background: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary);
+}
+
+.pokedex-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  background: var(--color-bg-surface-soft);
+  color: var(--color-text-secondary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--color-border);
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.pokedex-field {
+  width: 100%;
+  height: 44px;
+  padding: 0 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-strong);
+  background: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.pokedex-field::placeholder {
+  color: var(--color-text-muted);
+}
+
+.pokedex-field:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-soft);
+}
+
+.pokedex-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.pokedex-toggle-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+/* Stage / effets "tech" neutralisés (plus d'aura, plus de scanline) */
+.pokedex-stage {
+  position: relative;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-lg);
+  min-height: auto;
+}
+
+.pokedex-stage::before,
+.pokedex-stage::after,
+.pokedex-corners,
+.pokedex-corners-alt,
+.pokedex-stage-number,
+.pokedex-stage-aura,
+.pokedex-stage-platform {
+  display: none !important;
+}
+
+.pokedex-stage-title {
+  text-shadow: none;
+  color: var(--color-text-primary);
+}
+
+.pokedex-stage-sprite {
+  animation: none;
+}
+
+/* Grille : fallback sur le style home-pokemon-card */
+.pokedex-grid-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: var(--color-bg-surface);
+  border-radius: var(--radius-md);
+  border: none;
+  padding: 0.85rem 0.55rem 0.9rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  aspect-ratio: auto;
+  gap: 0.25rem;
+}
+
+.pokedex-grid-tile:hover {
+  transform: translateY(-3px);
+  border-color: transparent;
+  box-shadow: var(--shadow-card-hover);
+}
+
+.pokedex-grid-tile::after,
+.pokedex-grid-tile-active::before {
+  display: none !important;
+}
+
+.pokedex-grid-tile-active {
+  background: var(--color-primary-softer);
+  box-shadow: 0 0 0 2px var(--color-primary) inset, var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+.pokedex-grid-number {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--color-text-muted);
+}
+
+.pokedex-grid-status {
+  height: 0.5rem;
+  width: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-border-strong);
+}
+
+.pokedex-grid-status-active {
+  background: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-soft);
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "held_item",
+  "source": "generated_from_cobblemon_kotlin_registry",
+  "namespacedId": "cobblemon:throat_spray",
+  "displayName": "Throat Spray",
+  "path": "throat_spray",
+  "registryGroup": "held_items",
+  "officialJsonExistsInCobblemonAssets": false
+}

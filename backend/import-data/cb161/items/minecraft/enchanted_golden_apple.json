@@ -1,0 +1,21 @@
+{
+  "namespacedId": "minecraft:enchanted_golden_apple",
+  "displayName": "Enchanted Golden Apple",
+  "baitEffects": [
+    {
+      "effectType": "reduce_bite_time",
+      "chance": 1.0,
+      "value": 0.1
+    },
+    {
+      "effectType": "boost_rarity_bucket",
+      "chance": 1.0,
+      "value": 10
+    },
+    {
+      "effectType": "shiny_multiplier",
+      "chance": 1.0,
+      "value": 10
+    }
+  ]
+}

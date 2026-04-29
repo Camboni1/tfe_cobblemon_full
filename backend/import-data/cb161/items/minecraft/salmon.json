@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:salmon",
+  "displayName": "Raw Salmon",
+  "seasoning": {
+    "colour": "pink",
+    "foodHunger": 6,
+    "foodSaturation": 4.8,
+    "mobEffects": []
+  }
+}

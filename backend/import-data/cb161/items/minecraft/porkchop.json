@@ -1,0 +1,10 @@
+{
+  "namespacedId": "minecraft:porkchop",
+  "displayName": "Raw Porkchop",
+  "seasoning": {
+    "colour": "pink",
+    "foodHunger": 8,
+    "foodSaturation": 6.4,
+    "mobEffects": []
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:sand",
+  "displayName": "Sand",
+  "namespace": "minecraft",
+  "path": "sand",
+  "officialJsonExistsInCobblemonAssets": false
+}

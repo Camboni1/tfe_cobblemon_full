@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:lily_pad",
+  "displayName": "Lily Pad",
+  "namespace": "minecraft",
+  "path": "lily_pad",
+  "officialJsonExistsInCobblemonAssets": false
+}

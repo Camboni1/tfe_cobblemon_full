@@ -1,0 +1,21 @@
+{
+  "namespacedId": "minecraft:golden_apple",
+  "displayName": "Golden Apple",
+  "baitEffects": [
+    {
+      "effectType": "reduce_bite_time",
+      "chance": 1.0,
+      "value": 0.25
+    },
+    {
+      "effectType": "boost_rarity_bucket",
+      "chance": 1.0,
+      "value": 1
+    },
+    {
+      "effectType": "shiny_multiplier",
+      "chance": 1.0,
+      "value": 2
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:ochre_froglight",
+  "displayName": "Ochre Froglight",
+  "namespace": "minecraft",
+  "path": "ochre_froglight",
+  "officialJsonExistsInCobblemonAssets": false
+}

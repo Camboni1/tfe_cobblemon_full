@@ -1,0 +1,17 @@
+{
+  "namespacedId": "minecraft:golden_carrot",
+  "displayName": "Golden Carrot",
+  "seasoning": {
+    "colour": "yellow",
+    "foodHunger": 6,
+    "foodSaturation": 7.2,
+    "mobEffects": []
+  },
+  "baitEffects": [
+    {
+      "effectType": "boost_rarity_bucket",
+      "chance": 1.0,
+      "value": 1
+    }
+  ]
+}

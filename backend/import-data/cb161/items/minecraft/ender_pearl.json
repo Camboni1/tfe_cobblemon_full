@@ -1,0 +1,9 @@
+{
+  "kind": "vanilla_reference",
+  "source": "minecraft_registry_reference",
+  "namespacedId": "minecraft:ender_pearl",
+  "displayName": "Ender Pearl",
+  "namespace": "minecraft",
+  "path": "ender_pearl",
+  "officialJsonExistsInCobblemonAssets": false
+}
