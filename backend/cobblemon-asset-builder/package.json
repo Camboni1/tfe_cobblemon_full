@@ -1,0 +1,20 @@
+{
+  "name": "cobblemon-asset-builder",
+  "version": "0.1.0",
+  "description": "Converts Cobblemon Bedrock models (.geo.json + texture) into glTF (.glb) for web rendering.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "convert": "tsx src/index.ts",
+    "convert:all": "tsx src/index.ts --all",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@gltf-transform/core": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.3"
+  }
+}

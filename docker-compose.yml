@@ -68,5 +68,18 @@ services:
       APP_ASSETS_PATH: ./assets
       APP_ASSETS_BASE_URL: http://localhost:8080
 
+  asset-builder:
+    profiles: ["assets"]
+    build:
+      context: ./backend/cobblemon-asset-builder
+    container_name: cobblemon-asset-builder
+    volumes:
+      - ./backend/assets:/assets
+    environment:
+      ASSETS_PATH: /assets/pokemon
+    # Par défaut: convertit tous les Pokémon (CMD = --all dans le Dockerfile).
+    # Pour n'en convertir qu'un seul (debug) :
+    #   docker compose --profile assets run --rm asset-builder charizard
+
 volumes:
   cobblemon_db_data:

@@ -176,4 +176,11 @@ public class AssetUrlResolver {
 
         return appProperties.assets().baseUrl() + "/assets/" + relativePath;
     }
+
+    public String resolveGltfUrl(Short dex, String slug, boolean shiny) {
+        String suffix = shiny ? "_shiny" : "";
+        String relative = "pokemon/glb/" + formatDex(dex) + "_" + slug
+                + "/" + slug + suffix + ".glb";
+        return resolveUrl(relative);
+    }
 }

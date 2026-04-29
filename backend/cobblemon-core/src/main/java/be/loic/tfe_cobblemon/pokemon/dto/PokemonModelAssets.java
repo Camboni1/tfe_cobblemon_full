@@ -6,5 +6,7 @@ public record PokemonModelAssets(
         String textureUrl,
         String textureShinyUrl,
         String textureFemaleUrl,
-        String textureShinyFemaleUrl
+        String textureShinyFemaleUrl,
+        String gltfUrl,
+        String gltfShinyUrl
 ) {}
