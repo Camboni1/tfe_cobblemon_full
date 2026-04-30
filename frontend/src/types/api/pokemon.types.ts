@@ -13,6 +13,8 @@ export interface PokemonModelAssets {
     textureShinyUrl: string | null;
     textureFemaleUrl: string | null;
     textureShinyFemaleUrl: string | null;
+    gltfUrl: string | null;          // NOUVEAU
+    gltfShinyUrl: string | null;     // NOUVEAU
 }
 
 export interface PokemonListItem {

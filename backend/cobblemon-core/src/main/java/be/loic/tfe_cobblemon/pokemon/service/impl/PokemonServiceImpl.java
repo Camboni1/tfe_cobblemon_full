@@ -255,7 +255,9 @@ public class PokemonServiceImpl implements PokemonService {
                 assetUrlResolver.resolveCobblemonTextureUrl(dex, slug, formCode, false, false),
                 assetUrlResolver.resolveCobblemonTextureUrl(dex, slug, formCode, true,  false),
                 assetUrlResolver.resolveCobblemonTextureUrl(dex, slug, formCode, false, true),
-                assetUrlResolver.resolveCobblemonTextureUrl(dex, slug, formCode, true,  true)
+                assetUrlResolver.resolveCobblemonTextureUrl(dex, slug, formCode, true,  true),
+                assetUrlResolver.resolveGltfUrl(dex, slug, false),
+                assetUrlResolver.resolveGltfUrl(dex, slug, true)
         );
     }
 }

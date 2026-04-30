@@ -38,7 +38,7 @@ export interface BedrockBone {
     name: string;
     parent?: string;
     pivot?: [number, number, number];
-    /** Rotation de repos du bone, en degrés (ZYX intrinsèque). */
+    /** Rotation de repos du bone, en degres (ordre Euler XYZ). */
     rotation?: [number, number, number];
     cubes?: BedrockCube[];
     mirror?: boolean;

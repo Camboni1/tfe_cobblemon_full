@@ -177,9 +177,14 @@ public class AssetUrlResolver {
         return appProperties.assets().baseUrl() + "/assets/" + relativePath;
     }
 
+    /**
+     * URL du .glb généré par cobblemon-asset-builder.
+     * Layout : pokemon/glb/{NNNN}_{slug}/{slug}[_shiny].glb
+     */
     public String resolveGltfUrl(Short dex, String slug, boolean shiny) {
+        if (dex == null || slug == null || slug.isBlank()) return null;
         String suffix = shiny ? "_shiny" : "";
-        String relative = "pokemon/glb/" + formatDex(dex) + "_" + slug
+        String relative = "pokemon/glb/" + formatDexNumber(dex) + "_" + slug
                 + "/" + slug + suffix + ".glb";
         return resolveUrl(relative);
     }

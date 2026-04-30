@@ -91,16 +91,23 @@ export function buildGltfDocument(
             ]);
             nodesByName.get(bone.parent)!.addChild(node);
         } else {
-            node.setTranslation([pivot[0], pivot[1], pivot[2]]);
+            // Cobblemon's TexturedModel uses PartPose.offset(0, 0, 0) for
+            // root bones; the root pivot only matters for descendants/cubes.
+            node.setTranslation([0, 0, 0]);
             root.addChild(node);
         }
 
-        // Rotation de repos (rare en Cobblemon mais à appliquer si non-zéro)
+        // Rotation de repos (rare en Cobblemon mais à appliquer si non-zéro).
+        // Le -X compense la convention Bedrock vs three.js (cf. patches dans
+        // bakeRotationTrack) — sans cette négation, les cornes basculent en
+        // arrière et passent derrière la tête.
         if (bone.rotation && (bone.rotation[0] || bone.rotation[1] || bone.rotation[2])) {
-            node.setRotation(eulerXYZToQuat(-bone.rotation[0], bone.rotation[1], bone.rotation[2]));
+            node.setRotation(
+                eulerXYZToQuat(-bone.rotation[0], bone.rotation[1], -bone.rotation[2]),
+            );
         }
 
-        // Cubes du bone → Primitives groupés dans un Mesh par bone
+        // Cubes du bone -> primitives groupées dans un mesh par bone.
         const cubes = bone.cubes ?? [];
         if (cubes.length === 0) continue;
 
@@ -171,6 +178,7 @@ export function buildGltfDocument(
     return doc;
 }
 
+// Build one Cobblemon cube as local geometry under its bone.
 function buildCubePrimitive(
     doc: Document,
     cube: BedrockCube,
@@ -339,7 +347,7 @@ function buildCubePrimitive(
             cubePivot[1] - pivot[1],
             cubePivot[2] - pivot[2],
         ];
-        const quat = eulerXYZToQuat(cubeRotation[0], cubeRotation[1], cubeRotation[2]);
+        const quat = eulerXYZToQuat(-cubeRotation[0], cubeRotation[1], -cubeRotation[2]);
 
         for (let i = 0; i < positions.length; i += 3) {
             const rotated = rotatePointAroundPivot(

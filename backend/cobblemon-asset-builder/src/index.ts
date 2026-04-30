@@ -1,149 +1,174 @@
-/**
- * CLI du converter Cobblemon → glTF.
- *
- * Usage :
- *   tsx src/index.ts charizard               # convertit un Pokémon par slug
- *   tsx src/index.ts --all                   # convertit tout le dossier
- *   ASSETS_PATH=/abs/path tsx src/index.ts charizard
- *
- * Layout d'entrée attendu (sous ASSETS_PATH) :
- *   cobblemon-models/{NNNN}_{slug}/{slug}.geo.json
- *   cobblemon-textures/{NNNN}_{slug}/{slug}.png
- *
- * Layout de sortie :
- *   glb/{NNNN}_{slug}/{slug}.glb
- */
-
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, statSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { NodeIO } from '@gltf-transform/core';
 import {
     parseAnimationFile,
     parseGeoFile,
-    parsePoserPoseAnimationName,
+    parsePoserPoseAnimation,
+    type BedrockAnimationReference,
 } from './parse-bedrock.js';
 import { buildGltfDocument } from './build-gltf.js';
 import { bakeAnimation, type SampledAnimation } from './animation-baker.js';
-import type { BedrockBone } from './bedrock-types.js';
+import type { BedrockAnimation, BedrockBone } from './bedrock-types.js';
+import {
+    CobblemonAssetRepository,
+    type ResolvedPokemonAssets,
+} from './resolve-cobblemon-assets.js';
 
-interface PokemonAssets {
-    /** Préfixe du dossier, e.g. "0006_charizard". */
-    folder: string;
-    /** Le slug seul, e.g. "charizard". */
-    slug: string;
-    /** "0006" — extrait du folder. */
-    dexPadded: string;
-    geoPath: string;
-    texturePath: string;
-    /** Optionnel : chemin du .animation.json. */
-    animationPath: string | null;
-    /** Optionnel : chemin du poser .json. */
-    poserPath: string | null;
+interface CliOptions {
+    all: boolean;
+    slugs: string[];
+    poseName: string;
+    aspects: string[];
+    force: boolean;
+}
+
+interface SelectedAnimation {
+    path: string;
+    key: string;
+    animation: BedrockAnimation;
 }
 
 const ASSETS_PATH = resolve(process.env.ASSETS_PATH ?? '../assets/pokemon');
 
-function findPokemonAssets(slug: string): PokemonAssets | null {
-    const modelsDir = join(ASSETS_PATH, 'cobblemon-models');
-    if (!existsSync(modelsDir)) {
-        throw new Error(`Models dir not found: ${modelsDir}`);
-    }
-
-    const folder = readdirSync(modelsDir).find((d) => {
-        if (!statSync(join(modelsDir, d)).isDirectory()) return false;
-        const m = d.match(/^(\d{4})_(.+)$/);
-        return m !== null && m[2] === slug;
-    });
-    if (!folder) return null;
-
-    const dexPadded = folder.split('_')[0];
-    const geoPath = join(modelsDir, folder, `${slug}.geo.json`);
-    const texturePath = join(ASSETS_PATH, 'cobblemon-textures', folder, `${slug}.png`);
-
-    if (!existsSync(geoPath)) {
-        console.warn(`[skip] ${slug}: missing geo file at ${geoPath}`);
-        return null;
-    }
-    if (!existsSync(texturePath)) {
-        console.warn(`[skip] ${slug}: missing texture at ${texturePath}`);
-        return null;
-    }
-
-    const animationPath = join(
-        ASSETS_PATH,
-        'cobblemon-animations',
-        folder,
-        `${slug}.animation.json`,
-    );
-    const poserPath = join(ASSETS_PATH, 'cobblemon-posers', folder, `${slug}.json`);
-
-    return {
-        folder,
-        slug,
-        dexPadded,
-        geoPath,
-        texturePath,
-        animationPath: existsSync(animationPath) ? animationPath : null,
-        poserPath: existsSync(poserPath) ? poserPath : null,
+function parseArgs(args: string[]): CliOptions {
+    const options: CliOptions = {
+        all: false,
+        slugs: [],
+        poseName: 'standing',
+        aspects: [],
+        force: false,
     };
-}
 
-/**
- * Choisit l'animation à utiliser comme pose statique :
- *   1. Le poser dit `q.bedrock(slug, 'foo')` → on prend `animation.{slug}.foo`
- *   2. Sinon `animation.{slug}.ground_idle` si présente
- *   3. Sinon `animation.{slug}.idle`
- *   4. Sinon la première animation
- */
-function pickIdleAnimationKey(
-    slug: string,
-    animMap: Map<string, unknown>,
-    poserPath: string | null,
-): string | null {
-    if (poserPath) {
-        const poseAnim = parsePoserPoseAnimationName(poserPath);
-        if (poseAnim) {
-            const key = `animation.${slug}.${poseAnim}`;
-            if (animMap.has(key)) return key;
+    for (let i = 0; i < args.length; i++) {
+        const arg = args[i];
+        if (arg === '--all') {
+            options.all = true;
+        } else if (arg === '--force') {
+            options.force = true;
+        } else if (arg === '--pose' || arg === '--state') {
+            const value = args[++i];
+            if (!value) throw new Error(`${arg} requires a pose name`);
+            options.poseName = value;
+        } else if (arg === '--aspects' || arg === '--aspect') {
+            const value = args[++i];
+            if (!value) throw new Error(`${arg} requires one or more aspects`);
+            options.aspects.push(...value.split(','));
+        } else if (arg.startsWith('--')) {
+            throw new Error(`Unknown option: ${arg}`);
+        } else {
+            options.slugs.push(arg);
         }
     }
-    const candidates = [
-        `animation.${slug}.ground_idle`,
-        `animation.${slug}.idle`,
-    ];
-    for (const c of candidates) if (animMap.has(c)) return c;
-    const first = animMap.keys().next().value;
-    return first ?? null;
+
+    options.aspects = normalizeAspects(options.aspects);
+    return options;
 }
 
-function listAllSlugs(): string[] {
-    const modelsDir = join(ASSETS_PATH, 'cobblemon-models');
-    return readdirSync(modelsDir)
-        .filter((d) => statSync(join(modelsDir, d)).isDirectory())
-        .map((d) => {
-            const m = d.match(/^\d{4}_(.+)$/);
-            return m?.[1];
-        })
-        .filter((s): s is string => Boolean(s))
-        .sort();
+function selectAnimation(
+    repository: CobblemonAssetRepository,
+    assets: ResolvedPokemonAssets,
+    poseName: string,
+): SelectedAnimation | null {
+    const poseAnimation = assets.poserPath
+        ? parsePoserPoseAnimation(assets.poserPath, poseName)
+        : null;
+
+    const candidates: BedrockAnimationReference[] = [];
+    if (poseAnimation) candidates.push(poseAnimation);
+
+    const fallbackGroup = poseAnimation?.group ?? assets.defaultAnimationGroup;
+    for (const name of fallbackAnimationNames(poseName)) {
+        candidates.push({ group: fallbackGroup, name });
+    }
+
+    const triedKeys = new Set<string>();
+    const groupsToTry = new Set<string>([
+        ...candidates.map((candidate) => candidate.group),
+        assets.defaultAnimationGroup,
+        assets.slug,
+    ]);
+
+    for (const candidate of candidates) {
+        const selected = findAnimation(repository, candidate, triedKeys);
+        if (selected) return selected;
+    }
+
+    for (const group of groupsToTry) {
+        const path = repository.resolveAnimationPath(group);
+        if (!path) continue;
+        const animMap = parseAnimationFile(path);
+        const firstKey = animMap.keys().next().value as string | undefined;
+        if (!firstKey) continue;
+        return {
+            path,
+            key: firstKey,
+            animation: animMap.get(firstKey)!,
+        };
+    }
+
+    return null;
 }
 
-async function convertOne(assets: PokemonAssets): Promise<void> {
+function findAnimation(
+    repository: CobblemonAssetRepository,
+    candidate: BedrockAnimationReference,
+    triedKeys: Set<string>,
+): SelectedAnimation | null {
+    const key = `animation.${candidate.group}.${candidate.name}`;
+    if (triedKeys.has(key)) return null;
+    triedKeys.add(key);
+
+    const path = repository.resolveAnimationPath(candidate.group);
+    if (!path) return null;
+
+    const animMap = parseAnimationFile(path);
+    const animation = animMap.get(key);
+    return animation ? { path, key, animation } : null;
+}
+
+function fallbackAnimationNames(poseName: string): string[] {
+    switch (poseName) {
+        case 'battle-standing':
+            return ['battle_idle', 'ground_idle', 'idle'];
+        case 'walking':
+            return ['ground_walk', 'walk', 'ground_idle', 'idle'];
+        case 'running':
+            return ['ground_run', 'run', 'ground_idle', 'idle'];
+        case 'hover':
+        case 'battle-flying':
+            return ['air_idle', 'ground_idle', 'idle'];
+        case 'fly':
+            return ['air_fly', 'air_idle', 'ground_idle', 'idle'];
+        case 'sleep':
+            return ['sleep', 'ground_idle', 'idle'];
+        default:
+            return ['ground_idle', 'idle'];
+    }
+}
+
+async function convertOne(
+    repository: CobblemonAssetRepository,
+    assets: ResolvedPokemonAssets,
+    poseName: string,
+    force: boolean,
+): Promise<void> {
     const outDir = join(ASSETS_PATH, 'glb', assets.folder);
-    const outPath = join(outDir, `${assets.slug}.glb`);
+    const outPath = join(outDir, `${assets.outputSlug}.glb`);
+    const selectedAnimation = selectAnimation(repository, assets, poseName);
 
-    // Idempotence : skip si le glb existe et est plus récent que TOUS les inputs
-    if (existsSync(outPath)) {
+    if (!force && existsSync(outPath)) {
         const outMtime = statSync(outPath).mtimeMs;
         const inputs = [
             assets.geoPath,
             assets.texturePath,
-            assets.animationPath,
             assets.poserPath,
-        ].filter((p): p is string => Boolean(p));
-        const newest = Math.max(...inputs.map((p) => statSync(p).mtimeMs));
+            selectedAnimation?.path,
+            ...assets.resolverPaths,
+        ].filter((path): path is string => Boolean(path));
+        const newest = Math.max(...inputs.map((path) => statSync(path).mtimeMs));
         if (outMtime >= newest) {
-            console.log(`[skip] ${assets.slug}: up to date`);
+            console.log(`[skip] ${assets.outputSlug}: up to date`);
             return;
         }
     }
@@ -151,67 +176,65 @@ async function convertOne(assets: PokemonAssets): Promise<void> {
     const geo = parseGeoFile(assets.geoPath);
     const textureBytes = new Uint8Array(readFileSync(assets.texturePath));
 
-    // Bake l'animation idle si on en a une
     let animation: SampledAnimation | undefined;
-    if (assets.animationPath) {
-        const animMap = parseAnimationFile(assets.animationPath);
-        const animKey = pickIdleAnimationKey(assets.slug, animMap, assets.poserPath);
-        if (animKey && animMap.has(animKey)) {
-            const bonesByName = new Map<string, BedrockBone>();
-            for (const b of geo.bones ?? []) bonesByName.set(b.name, b);
-            animation = bakeAnimation(animMap.get(animKey)!, {
-                name: animKey,
-                fps: 30,
-                bonesByName,
-            });
-        }
+    if (selectedAnimation) {
+        const bonesByName = new Map<string, BedrockBone>();
+        for (const bone of geo.bones ?? []) bonesByName.set(bone.name, bone);
+        animation = bakeAnimation(selectedAnimation.animation, {
+            name: selectedAnimation.key,
+            fps: 30,
+            bonesByName,
+        });
     }
 
     const doc = buildGltfDocument(geo, textureBytes, {
-        modelName: assets.slug,
+        modelName: assets.outputSlug,
         flipFront: true,
         animation,
     });
 
     mkdirSync(dirname(outPath), { recursive: true });
-    const io = new NodeIO();
-    await io.write(outPath, doc);
+    await new NodeIO().write(outPath, doc);
 
     const sizeKb = (statSync(outPath).size / 1024).toFixed(1);
+    const aspectLabel = assets.aspects.length > 0 ? ` aspects=[${assets.aspects.join(',')}]` : '';
     const animLabel = animation
-        ? ` + anim "${animation.name}" (${animation.durationSec}s @ ${animation.fps}fps)`
-        : '';
+        ? ` + pose "${poseName}" -> anim "${animation.name}" (${animation.durationSec}s @ ${animation.fps}fps)`
+        : ` + pose "${poseName}" -> no animation`;
     console.log(
-        `[ok] ${assets.slug}: ${geo.description.identifier}${animLabel} → ${outPath} (${sizeKb} KB)`,
+        `[ok] ${assets.outputSlug}: ${assets.modelResource} + ${assets.textureResource}${aspectLabel}${animLabel} -> ${outPath} (${sizeKb} KB)`,
     );
 }
 
 async function main() {
-    const args = process.argv.slice(2);
-    if (args.length === 0) {
+    const options = parseArgs(process.argv.slice(2));
+    if (!options.all && options.slugs.length === 0) {
         console.error(
-            'Usage:\n  tsx src/index.ts <slug>\n  tsx src/index.ts --all',
+            'Usage:\n  tsx src/index.ts <slug> [--pose standing] [--aspects shiny,female] [--force]\n  tsx src/index.ts --all',
         );
         process.exit(1);
     }
 
     console.log(`Assets path: ${ASSETS_PATH}`);
-
-    const slugs = args[0] === '--all' ? listAllSlugs() : [args[0]];
-    console.log(`Converting ${slugs.length} model(s)...`);
+    const repository = new CobblemonAssetRepository(ASSETS_PATH);
+    const slugs = options.all ? repository.listSlugs() : options.slugs;
+    console.log(
+        `Converting ${slugs.length} model(s)... pose=${options.poseName} aspects=[${options.aspects.join(',')}]`,
+    );
 
     let ok = 0;
     let skipped = 0;
     let failed = 0;
 
     for (const slug of slugs) {
-        const assets = findPokemonAssets(slug);
-        if (!assets) {
-            skipped++;
-            continue;
-        }
         try {
-            await convertOne(assets);
+            const assets = repository.resolvePokemon(slug, { aspects: options.aspects });
+            if (!assets) {
+                console.warn(`[skip] ${slug}: assets not found`);
+                skipped++;
+                continue;
+            }
+            await convertOne(repository, assets, options.poseName, options.force);
             ok++;
         } catch (err) {
             failed++;
@@ -223,7 +246,14 @@ async function main() {
     if (failed > 0) process.exit(2);
 }
 
-main().catch((e) => {
-    console.error(e);
+function normalizeAspects(aspects: string[]): string[] {
+    return [...new Set(aspects.flatMap((aspect) => aspect.split(',')))]
+        .map((aspect) => aspect.trim().toLowerCase())
+        .filter(Boolean)
+        .sort();
+}
+
+main().catch((err) => {
+    console.error(err);
     process.exit(1);
 });

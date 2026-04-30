@@ -9,51 +9,40 @@ const PokemonModelViewer = dynamic(
 );
 
 interface PokemonModel3DStageProps {
-    modelUrl: string;
-    textureUrl: string;
+    /** URL du fichier .glb produit par cobblemon-asset-builder. */
+    url: string;
+    /** Texture Cobblemon à appliquer au modèle, par exemple shiny. */
+    textureUrl?: string | null;
     fallback: React.ReactNode;
     className?: string;
 }
 
-export function PokemonModel3DStage({
-                                        modelUrl,
-                                        textureUrl,
-                                        fallback,
-                                        className,
-                                    }: PokemonModel3DStageProps) {
-    // Probe the URLs once: if either is unreachable, fall back to 2D immediately.
-    const [ready, setReady] = useState<'pending' | 'ok' | 'error'>('pending');
+export function PokemonModel3DStage({ url, textureUrl, fallback, className }: PokemonModel3DStageProps) {
+    // Ping le glb une fois : si introuvable (404), retombe sur le sprite 2D.
+    const [probe, setProbe] = useState<{ url: string; ready: 'ok' | 'error' } | null>(null);
+    const ready = probe?.url === url ? probe.ready : 'pending';
+    const viewerKey = url;
 
     useEffect(() => {
         let cancelled = false;
-        setReady('pending');
-        Promise.all([
-            fetch(modelUrl, { method: 'HEAD' }),
-            fetch(textureUrl, { method: 'HEAD' }),
-        ])
-            .then(([m, t]) => {
+        fetch(url, { method: 'HEAD' })
+            .then((res) => {
                 if (cancelled) return;
-                setReady(m.ok && t.ok ? 'ok' : 'error');
+                setProbe({ url, ready: res.ok ? 'ok' : 'error' });
             })
             .catch(() => {
-                if (!cancelled) setReady('error');
+                if (!cancelled) setProbe({ url, ready: 'error' });
             });
 
         return () => {
             cancelled = true;
         };
-    }, [modelUrl, textureUrl]);
+    }, [url]);
 
     if (ready === 'error') return <>{fallback}</>;
     if (ready === 'pending') return <Pending />;
 
-    return (
-        <PokemonModelViewer
-            modelUrl={modelUrl}
-            textureUrl={textureUrl}
-            className={className}
-        />
-    );
+    return <PokemonModelViewer key={viewerKey} url={url} textureUrl={textureUrl} className={className} />;
 }
 
 function Pending() {

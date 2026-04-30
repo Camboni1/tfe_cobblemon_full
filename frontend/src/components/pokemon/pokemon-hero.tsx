@@ -12,6 +12,14 @@ interface PokemonHeroProps {
     activeForm: PokemonForm;
 }
 
+const COBBLEMON_3D_ASSET_VERSION = 'cobblemon-gltf-v2';
+
+function withAssetVersion(url: string | null): string | null {
+    if (!url) return null;
+    const separator = url.includes('?') ? '&' : '?';
+    return `${url}${separator}v=${COBBLEMON_3D_ASSET_VERSION}`;
+}
+
 export function PokemonHero({ pokemon, activeForm }: PokemonHeroProps) {
     const [shiny, setShiny] = useState(false);
     const [female, setFemale] = useState(false);
@@ -27,13 +35,36 @@ export function PokemonHero({ pokemon, activeForm }: PokemonHeroProps) {
         return sprites.defaultUrl;
     };
 
-    // 3D texture (matches the active toggles, with graceful fallback)
-    const pickTexture = (): string | null => {
+    // 3D : Cobblemon garde le même modèle pour les aspects type shiny/female
+    // et remplace surtout la texture. On ne change de GLB que si aucun PNG
+    // de variante n'existe.
+    const pickGltf = (): { url: string | null; textureOverrideUrl: string | null } | null => {
         if (!model) return null;
-        if (shiny && female && model.textureShinyFemaleUrl) return model.textureShinyFemaleUrl;
-        if (shiny && model.textureShinyUrl) return model.textureShinyUrl;
-        if (female && model.textureFemaleUrl) return model.textureFemaleUrl;
-        return model.textureUrl;
+        if (shiny && female && model.textureShinyFemaleUrl) {
+            return {
+                url: model.gltfUrl ?? model.gltfShinyUrl,
+                textureOverrideUrl: model.textureShinyFemaleUrl,
+            };
+        }
+        if (shiny && model.textureShinyUrl) {
+            return {
+                url: model.gltfUrl ?? model.gltfShinyUrl,
+                textureOverrideUrl: model.textureShinyUrl,
+            };
+        }
+        if (shiny) {
+            return {
+                url: model.gltfShinyUrl ?? model.gltfUrl,
+                textureOverrideUrl: null,
+            };
+        }
+        if (female && model.textureFemaleUrl) {
+            return {
+                url: model.gltfUrl,
+                textureOverrideUrl: model.textureFemaleUrl,
+            };
+        }
+        return { url: model.gltfUrl, textureOverrideUrl: null };
     };
 
     const heroImageSrc =
@@ -42,9 +73,10 @@ export function PokemonHero({ pokemon, activeForm }: PokemonHeroProps) {
 
     const hasFemaleVariant = Boolean(sprites.femaleUrl) || Boolean(model?.textureFemaleUrl);
 
-    const modelUrl = model?.modelUrl ?? null;
-    const textureUrl = pickTexture();
-    const has3D = Boolean(modelUrl && textureUrl && pokemon.implemented);
+    const gltf = pickGltf();
+    const gltfUrl = withAssetVersion(gltf?.url ?? null);
+    const gltfTextureUrl = withAssetVersion(gltf?.textureOverrideUrl ?? null);
+    const has3D = Boolean(gltfUrl && pokemon.implemented);
 
     const fallback2D = (
         <div className="relative w-full h-full flex items-center justify-center">
@@ -73,8 +105,8 @@ export function PokemonHero({ pokemon, activeForm }: PokemonHeroProps) {
             <div className="relative w-full sm:w-80 h-80 flex-shrink-0">
                 {has3D ? (
                     <PokemonModel3DStage
-                        modelUrl={modelUrl!}
-                        textureUrl={textureUrl!}
+                        url={gltfUrl!}
+                        textureUrl={gltfTextureUrl}
                         fallback={fallback2D}
                     />
                 ) : (

@@ -153,7 +153,9 @@ public class PokemonFormServiceImpl implements PokemonFormService {
                 assetUrlResolver.resolveCobblemonTextureUrl(dexNumber, slug, formCode, false, false),
                 assetUrlResolver.resolveCobblemonTextureUrl(dexNumber, slug, formCode, true,  false),
                 assetUrlResolver.resolveCobblemonTextureUrl(dexNumber, slug, formCode, false, true),
-                assetUrlResolver.resolveCobblemonTextureUrl(dexNumber, slug, formCode, true,  true)
+                assetUrlResolver.resolveCobblemonTextureUrl(dexNumber, slug, formCode, true,  true),
+                assetUrlResolver.resolveGltfUrl(dexNumber, slug, false),
+                assetUrlResolver.resolveGltfUrl(dexNumber, slug, true)
         );
 
         return new PokemonFormResponse(

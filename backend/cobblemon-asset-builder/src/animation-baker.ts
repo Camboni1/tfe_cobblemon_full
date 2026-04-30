@@ -1,7 +1,6 @@
 /**
- * Baker d'animation : prend une `BedrockAnimation` et la sample à fps fixé,
- * en évaluant les expressions MoLang. Les rotations sont converties en
- * quaternions avec correction de convention d'axes Bedrock -> glTF.
+ * Baker d'animation : prend une `BedrockAnimation` et la sample a fps fixe,
+ * en evaluant les expressions MoLang.
  *
  * En sortie : un `SampledAnimation` qu'on peut directement écrire en
  * channels glTF (input = times, output = values, interpolation LINEAR).
@@ -119,25 +118,13 @@ function bakeRotationTrack(
         const y = restRotation[1] + rotation[1];
         const z = restRotation[2] + rotation[2];
 
-        const q = eulerXYZToQuat(
-            -x,
-            y,
-            shouldInvertAnimationZ(boneName) ? -z : z,
-        );
+        const q = eulerXYZToQuat(-x, y, -z);
         values[i * 4 + 0] = q[0];
         values[i * 4 + 1] = q[1];
         values[i * 4 + 2] = q[2];
         values[i * 4 + 3] = q[3];
     }
     return { times, values, path: 'rotation' };
-}
-
-function shouldInvertAnimationZ(boneName: string): boolean {
-    return (
-        boneName === 'wings'
-        || boneName.startsWith('wing_')
-        || /^(?:arm|forearm|hand|finger|fingers)_/.test(boneName)
-    );
 }
 
 function bakeVec3Track(
@@ -218,8 +205,9 @@ function resolveFrame(
 // =====================================================================
 
 /**
- * Euler XYZ (en degrés) → quaternion (x, y, z, w).
- * C'est l'ordre attendu par les rotations Blockbench/Bedrock exportées ici.
+ * Euler XYZ (en degres) -> quaternion (x, y, z, w).
+ * Les appelants appliquent la conversion Cobblemon/ModelPart vers glTF :
+ * X et Z inverses, Y conserve.
  */
 export function eulerXYZToQuat(
     xDeg: number,
