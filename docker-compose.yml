@@ -32,6 +32,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: cobblemon
       APP_ASSETS_PATH: ./assets
       APP_ASSETS_BASE_URL: http://localhost:8080
+    volumes:
+      - ./backend/assets:/app/assets
     ports:
       - "8080:8080"
 
